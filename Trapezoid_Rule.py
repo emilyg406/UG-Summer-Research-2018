@@ -1,4 +1,4 @@
-Author: AJ Stewart
+#Author: AJ Stewart
 # This code uses random processes and the trapezoid method
 # To approximate a definite integral
 # This code does not require a specified number of sub intervals
