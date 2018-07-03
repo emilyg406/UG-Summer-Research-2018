@@ -1,5 +1,5 @@
+import sympy as sp
 from sympy.plotting import plot
-from sympy import symbols
-x = symbols('x')
-graph=plot(x^2, title='Plot', xlabel='x', ylabel='y')
-graph.show()
+from sympy import Symbol
+x = Symbol('x')
+graph=plot(sp.sin(3.14/x), title='Plot', xlabel='x', ylabel='y')
