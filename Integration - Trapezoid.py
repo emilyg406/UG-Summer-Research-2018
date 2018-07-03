@@ -19,9 +19,10 @@ def trapezoid(y,xl,xu,n):
     for i in range (0,n+1):
         if i==0 or i==n+1:
             trap=y(xl+i*dx)
-            sum=sum+simp
+            sum=sum+trap
         else:
             trap=2*y(xl+i*dx)
+            sum=sum+trap
     return sum*.5*dx
 
 def graph(y,xl,xu):
@@ -29,7 +30,7 @@ def graph(y,xl,xu):
     y=[]
     for xvals in x:
         y.append(y(xvals))
-    plot.plot(xy)
+    plot.plot(x,y)
     plot.grid(True)
     plot.xlabel("X")
     plot.ylabel("Y")
