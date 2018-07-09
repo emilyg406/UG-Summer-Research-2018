@@ -9,7 +9,7 @@ n=1000
 
 # Find the integral of a function
 # Define function
-def function(x):
+def function(x): #(AJ) You define this function but don't use it anywhere else in the code
     y=x**2
     return y
 
@@ -19,7 +19,7 @@ def trapezoid(y,xl,xu,n):
     sum=0
     for i in range (0,n+1):
         if i==0 or i==n+1:
-            trap=y(xl+i*dx)
+            trap=y(xl+i*dx) #(AJ) Looks like you are treating y here as a function. Remember that Python doesn't know about the local variable y defined above. Hint: use the function you defined above instead.
             sum=sum+trap
         else:
             trap=2*y(xl+i*dx)
