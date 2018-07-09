@@ -10,7 +10,7 @@ def euler(t0,y0,n,tfinal):
     t=[]
     y.append(y0)
     t.append(t0)
-    for i in range (t0,n)):
+    for i in range(t0,n)):
         t.append((i+1)*dt)
         y.append(y[i]+y[i]*t[i]*dt)
     retun plt.plot(t,y)
