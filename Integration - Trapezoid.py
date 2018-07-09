@@ -6,6 +6,7 @@ xl=0
 xu=12
 n=1000
 
+
 # Find the integral of a function
 # Define function
 def function(x):
@@ -35,3 +36,6 @@ def graph(y,xl,xu):
     plot.xlabel("X")
     plot.ylabel("Y")
     plot.show()
+
+print(trapezoid(y,0,10,1000)) 
+print(graph(y,0,10)) 
