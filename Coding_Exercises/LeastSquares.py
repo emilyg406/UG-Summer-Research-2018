@@ -27,29 +27,30 @@ Created on Tue Jul 10 07:59:29 2018
 
 
 #Import the appropriate libraries
-
-
+import numpy as np
+import math as m
+import matplotlib.pyplot as plot
 
 def LeastSquares_line(data): #data should be a list of two variable data ,i.e. [[4,5],[-1,2],[2,2],[-1,3],[10,0]]
-	
-	n=#Create a constant for the size of the data
-	
-	x=#Create a list or array of the first coordinates of the data
-	
-	y=#Create a list or array of the second coordinates of the data
-	
-	#Both the average of the x values and y values appear in the equations for a and b 
-	
-	xbar= #calculate the average of the x values
-	
-	ybar= #calulate the average of the y values
-	
-	sum_xsquare= #Calculate the sum of the squares of the x values
-	
-	sum_xy= #Calculate the sum of x_k*y_k 
-	
+	data=np.array([])
+	n=len(data) #Create a constant for the size of the data
+	for i in (0,n-1):
+		x=np.array(data[i][1]) #Create a list or array of the first coordinates of the data	
+		y=np.array(data[i][2]) #Create a list or array of the second coordinates of the data	
+		#Both the average of the x values and y values appear in the equations for a and b 	
+		xbar=sum(x[i])/n #calculate the average of the x values
+		ybar=sum(y[i])/n #calulate the average of the y values
+		sum_xsquare=sum((x[i])**2) #Calculate the sum of the squares of the x values
+		sumx_square=(sum(x[i]))**2
+		sum_xy=sum((x[i])*(y[i])) #Calculate the sum of x_k*y_k
+		sumx=sum(x[i])
+		sumy=sum(y[i])
 	#You should now have all of the constants you need to calculate a and b
-	
+	denom=n*sumx_square-sumx_square
+	a=(sumy*sum_xsquare-sumx*sum_xy)/denom
+	b=(n*sum_xy-sumx*sumy)/denom
+	best_fit="y"=a"x"+b
+	return best_fit
 	#Plot the data and the least squares fit line.
 	#Be sure to make the plot include all of the data
 	#As well as distinguish the color of your data from the line
