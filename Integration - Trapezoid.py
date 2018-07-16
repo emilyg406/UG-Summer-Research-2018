@@ -9,33 +9,21 @@ n=1000
 
 # Find the integral of a function
 # Define function
-def function(x): #(AJ) You define this function but don't use it anywhere else in the code
+def function(x):
     y=x**2
     return y
 
 #Trapezoid Rule on function
-def trapezoid(y,xl,xu,n):
+def trapezoid(xl,xu,n):
     dx=(xu-xl)/n
     sum=0
     for i in range (0,n+1):
         if i==0 or i==n+1:
-            trap=y(xl+i*dx) #(AJ) Looks like you are treating y here as a function. Remember that Python doesn't know about the local variable y defined above. Hint: use the function you defined above instead.
+            trap=function(xl+i*dx) 
             sum=sum+trap
         else:
-            trap=2*y(xl+i*dx)
+            trap=2*function(xl+i*dx)
             sum=sum+trap
     return sum*.5*dx
 
-def graph(y,xl,xu):
-    x=np.arange(xl,xu,(xu-xl)/n)
-    y=[]
-    for xvals in x:
-        y.append(y(xvals))
-    plot.plot(x,y)
-    plot.grid(True)
-    plot.xlabel("X")
-    plot.ylabel("Y")
-    plot.show()
-
-print(trapezoid(y,0,10,1000)) 
-print(graph(y,0,10)) 
+print(trapezoid(0,5,10000)) 
