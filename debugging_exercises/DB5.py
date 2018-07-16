@@ -25,9 +25,9 @@ def euler(t0,y0,n,tfinal):
     dt=(tfinal-t0)/n
     y=[]
     t=[]
-    y.insert(0,y0)
-    t.insert(0,t0)
+    y.append(y0)    #replaced "insert" command with "append"
+    t.append(t0)    #"append"
     for i in range (0,n):
-        t.insert(0,(i+1)*dt)
-        y.insert(0,y[i]+function(y[i],t[i])*dt)
+        t.append((i+1)*dt)  #"append"
+        y.append(y[i]+function(y[i],t[i])*dt)#"append"
     return plt.plot(t,y)
