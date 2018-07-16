@@ -18,16 +18,16 @@ import matplotlib.pyplot as plt
 #Euler's Method
 
 def function(y,t):
-	dy=yt
+	dy=y*t
 	return dy
 
-def euler(t0,y0n,tfinal):
+def euler(t0,y0,n,tfinal):
     dt=(tfinal-t0)/n
     y=[]
-    t=[]]
+    t=[]
     y.append(y0)
     t.append(t0)
     for i in range (0,n):
-        t.append((i+1))*dt)
-        y.append(y[i]+function(yi,t[i])*dt)
+        t.append((i+1)*dt)
+        y.append(y[i]+function(y[i],t[i])*dt)
     return plt.plot(t,y)
