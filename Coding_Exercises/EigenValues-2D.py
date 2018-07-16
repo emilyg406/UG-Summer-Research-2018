@@ -20,15 +20,33 @@ Created on Tue Jul 10 07:59:29 2018
 
 
 #Import the appropriate libraries
-
-
+import numpy as np
+import math as m
+import matplotlib.pyplot as plot
 
 def EVal(A): # A is a 2x2 matrix
-	
+	A=np.array([])
+	sol=0
 	#Create an If statement that will return an appropriate error if A is not 2x2
-	
+	if len(A)!=2):
+		sol="Matrix A is not 2x2 - cannot determine eigenvalues"
+	elif len(A[i])!=2:
+		sol="Matrix A is not 2x2 - cannot determine eigenvalues"
 	#Solve the characteristic equation
-	
+	else:
+		a=1
+		b=A[1][1]+A[2][2]
+		c=(A[1][1]*A[2][2])-(A[1][2]*A[2][2])
+		det=b*2-a*c
+		if det>=0:
+			sol1=(-b+np.sqrt(det))/2
+			sol2=(-b-np.sqrt(det))/2
+		else:
+			re=-b/2
+			im=(np.sqrt(-det))/2
+			sol1=re+im"i"
+			sol2=re-im"i"
+		
 	#Find a solution to (A-lambda*I)x=0 for both solutions
 	
 	#Normalize your solutions	   	 
