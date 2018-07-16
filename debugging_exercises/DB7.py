@@ -28,6 +28,6 @@ def euler(t0,y0,n,tfinal):
     y.append(y0)
     t.append(t0)
     for i in range (0,n):        
-        y.append(y[len(y)]+function(y[len(y)],t[len(t)])*dt)
+        y.append(y[i]+function(y[i],t[i])*dt) #len(y) and len(t) only account for last data point not all data points
         t.append((i+1)*dt)
     return plt.plot(t,y)
