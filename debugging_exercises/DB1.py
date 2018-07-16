@@ -31,3 +31,8 @@ def euler(t0,y0,n,tfinal):
         t.append((i+1)*dt)
         y.append(y[i]+function(y[i],t[i])*dt)
     return plt.plot(t,y)
+
+#I see zero problems with this but when I put it into spyder it won't run because it says:
+#"'numpy.ndarray' object has no attribute 'np'"
+#Which doesn't made sense because this literally worked just fine in a different code
+#Please help
