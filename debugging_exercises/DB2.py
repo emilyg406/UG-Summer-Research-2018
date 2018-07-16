@@ -13,6 +13,7 @@ Created on Thu Jul  5 12:44:56 2018
 
 import numpy as np
 import matplotlib.pyplot as plt
+import math as m    #Imported math
 
 #Euler's Method
 
@@ -26,8 +27,11 @@ def euler(t0,y0,n,tfinal):
     t=[]
     y.append(y0)
     t.append(t0)
-    for i in range (0,n):
+    for i in range (0,n-1):
         t.append((i+1)*dt)
         y.append(y[i]+function(y[i],t[i])*dt)
     return plt.plot(t,y)
 
+#Not sure what the graph is supposed to look like
+#But I got something
+#Lemme know how this looks
