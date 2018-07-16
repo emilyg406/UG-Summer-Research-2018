@@ -2,6 +2,7 @@
     "python.unitTest.pyTestArgs": [],
     "python.unitTest.unittestEnabled": false,
     "python.unitTest.nosetestsEnabled": false,
-    "python.unitTest.pyTestEnabled": true,
-    "python.pythonPath": "C:\\Users\\Emily\\Anaconda3\\python.exe"
+    "python.unitTest.pyTestEnabled": false,
+    "python.pythonPath": "C:\\Users\\Emily\\Anaconda3\\python.exe",
+    "python.unitTest.promptToConfigure": false
 }
