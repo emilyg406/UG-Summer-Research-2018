@@ -29,5 +29,5 @@ def euler(t0,y0,n,tfinal):
     t.append(t0)
     for i in range (0,n):
         t.append((i+1)*dt)
-        y.append(y[i]+dy*dt)
+        y.append(y[i]+function(y[i],t[i])*dt)   #call function from previous def line instead of using dy
     return plt.plot(t,y)
