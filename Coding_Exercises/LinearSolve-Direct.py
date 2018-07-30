@@ -19,20 +19,36 @@ Created on Tue Jul 10 07:59:29 2018
 
 
 #Import the appropriate libraries
-
-
+import math
+import matplotlib.pyplot as plt
+import numpy as np
 
 def LinearSolve(A,b): # A is a matrix, b is a vector
-	
+	A=np.array([])
+	b=np.array([])
+	n=len(A)
+	x=np.array([])
+
 	#Create an If statement that will return an appropriate error if det(A)=0
-	
+	if np.linalg.det(A)==0:
+		return "Error - Determinant = 0"
+
 	#Create an If statement that will return an appropriate error if the dimensions of A and b don't align
-	
+	elif len(A)!=len(b):
+		return "Error: Incompatible dimensions"
+	elif len(A)!=len(A[]):
+		return "Error: Incompatible Dimensions"
+
 	#Find the inverse matrix A^-1
-	
+	else:
+		Ainv=np.linalg.inv(A)
+
 	#Multiply A^-1*b. Make sure this multiplication is in fact matrix times vector multiplication
-	
-	return sol #Return the solution vector 
+	for i in range (0,n):
+		for j in range (0,n):
+			x[i]=b[j]*A[i][j]
+			sol=x
+			return sol #Return the solution vector 
 
 
 	

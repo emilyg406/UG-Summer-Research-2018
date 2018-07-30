@@ -49,9 +49,12 @@ def LeastSquares_line(data): #data should be a list of two variable data ,i.e. [
 	denom=n*sumx_square-sumx_square
 	a=(sumy*sum_xsquare-sumx*sum_xy)/denom
 	b=(n*sum_xy-sumx*sumy)/denom
-	best_fit="y"=a"x"+b
-	return best_fit
+	
 	#Plot the data and the least squares fit line.
+	for x in range(0,10):
+		y=a*x+b
+		graph=plot.plot(x,y)
+	return graph
 	#Be sure to make the plot include all of the data
 	#As well as distinguish the color of your data from the line
 	#Finally you should include the equation of the line in the plot
