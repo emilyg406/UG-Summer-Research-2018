@@ -22,22 +22,31 @@ Created on Tue Jul 10 07:59:29 2018
 
 
 #Import the appropriate libraries
-
-
+import math as m
+import numpy as np
+import matplotlib.pyplot as plt
 
 def LinearSolveIt(A,b): # A is a 3x3 matrix, b is a vector
-	
+	A=np.array()
+	b=np.asrray([])
+
 	#Create an If statement that will return an appropriate error if det(A)=0
-	
+	if np.linalg.det(A)==0:
+		return "Error: Determinant equals zero"
 	#Create an If statement that will return an appropriate error if the dimensions of A and b don't align
-	
+	elif len(A)!=len(b):
+		return "Error: Dimensions not compatible"
+
 	#Create a guess that will be used. This way the user doesn't have to input one
-	
+	guess=np.array([1,2,3])
+
 	#Define an appropriate error for the solution
+	maxerror=0.01
 	
 	#Create a while loop that runs the iteration while |[x_(k+1),y_(k+1),z_(k+1)]-[x_k,y_k,z_k]|<e
+	while 
 	    #You should create a break statement in your while loop. This will prevent the loop from running forever
-		 
+		
 	
 	return sol #Return the solution vector 
 
