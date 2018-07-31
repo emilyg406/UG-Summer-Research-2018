@@ -23,8 +23,8 @@ def function(y,t):
 
 def euler(t0,y0,n,tfinal):
     dt=(tfinal-t0)/n
-    y=np.array([])
-    t=np.array([])
+    y=[]
+    t=[]
     y.append(y0)
     t.append(t0)
     for i in range (0,n):
