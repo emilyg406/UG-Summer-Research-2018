@@ -32,44 +32,46 @@ import math as m
 import matplotlib.pyplot as plot
 
 def LeastSquares_line(data): #data should be a list of two variable data ,i.e. [[4,5],[-1,2],[2,2],[-1,3],[10,0]]
-	data=np.array([])
-	n=len(data) #Create a constant for the size of the data
-	for i in (0,n-1):
-		x=np.array(data[i][1]) #Create a list or array of the first coordinates of the data	
-		y=np.array(data[i][2]) #Create a list or array of the second coordinates of the data	
-		#Both the average of the x values and y values appear in the equations for a and b 	
-		xbar=sum(x[i])/n #calculate the average of the x values
-		ybar=sum(y[i])/n #calulate the average of the y values
-		sum_xsquare=sum((x[i])**2) #Calculate the sum of the squares of the x values
-		sumx_square=(sum(x[i]))**2
-		sum_xy=sum((x[i])*(y[i])) #Calculate the sum of x_k*y_k
-		sumx=sum(x[i])
-		sumy=sum(y[i])
-	#You should now have all of the constants you need to calculate a and b
-	denom=n*sumx_square-sumx_square
-	a=(sumy*sum_xsquare-sumx*sum_xy)/denom
-	b=(n*sum_xy-sumx*sumy)/denom
-	
-	#Plot the data and the least squares fit line.
-	for x in range(0,10):
-		y=a*x+b
-		graph=plot.plot(x,y)
-	return graph
-	#Be sure to make the plot include all of the data
-	#As well as distinguish the color of your data from the line
-	#Finally you should include the equation of the line in the plot
-	 	 
-	
-	return 
+    n=len(data) #Create a constant for the size of the data
+    x=[]
+    y=[]
+    xsquare=[]
+    xy=[]
+    for i in range(0,n):
+        x.append(data[i][0]) #Create a list or array of the first coordinates of the data    
+        y.append(data[i][1]) #Create a list or array of the second coordinates of the data    
+        #Both the average of the x values and y values appear in the equations for a and b     
+        xsquare.append((x[i])**2) #Calculate the sum of the squares of the x values
+        xy.append((x[i])*(y[i])) #Calculate the sum of x_k*y_k
+    sum_xy=sum(xy)
+    sum_xsquare=sum(xsquare)
+    sumx_square=(sum(x))**2      
+    sumx=sum(x)
+    sumy=sum(y)
+    #You should now have all of the constants you need to calculate a and b
+    denom=n*sum_xsquare-sumx_square
+    a=(sumy*sum_xsquare-sumx*sum_xy)/denom
+    b=(n*sum_xy-sumx*sumy)/denom
+    
+    #Plot the data and the least squares fit line.
+    t=np.arange(0,10,0.2)
+    bestfit=plot.plot(t,b*t+a)
+    graph=plot.plot(x,y,'ro')
+    return graph, a, b
 
+    #Be sure to make the plot include all of the data
+    #As well as distinguish the color of your data from the line
+    #Finally you should include the equation of the line in the plot
 
-	
+print(LeastSquares_line([[1, 2], [1.7, 6], [7, 6], [1.7, 4], [2, 3], [5, 6]]))
+
+    
 ########################################################
 
 #Print out test of code for each equation
 
 #data=[[1, 2], [1.7, 6], [7, 6], [1.7, 4], [2, 3], [5, 6]] Solution:2.96414 + 0.500823 x
-	
-#data=[[-1, 2], [1.7, -3], [7, 0], [3, -5.7], [-2, 3]] Solution: 	0.074665 - 0.468198 x
-	
+    
+#data=[[-1, 2], [1.7, -3], [7, 0], [3, -5.7], [-2, 3]] Solution:     0.074665 - 0.468198 x
+    
 #data=create a random set of two variable data that ranges from 0 to 100 with 5000 entries
