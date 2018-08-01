@@ -19,7 +19,7 @@ Created on Tue Jul 10 07:59:29 2018
 #symbolically take the derivative which will make things a lot easier.
 #I'm also importing the symbolic variable x from sympy
 #However there are other libraries that you should add here
-import sympy as syp 
+import sympy as sp 
 from sympy.abc import x
 
 

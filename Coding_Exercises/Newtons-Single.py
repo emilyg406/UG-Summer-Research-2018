@@ -19,15 +19,17 @@ Created on Tue Jul 10 07:59:29 2018
 #################################################################
 #There are two big pieces; finding the derivative and the iterative loop
 #Hopefully you can use your other code for the derivative in this code
+	#AJ I never got the other code for the derivative
 
 
 #Import the appropriate libraries
-
-
+import math as m
+import numpy as np
+import matplotlib.pyplot as plt
 
 #Define the function of interest
 def function(x):
-	y=
+	y=x**2+x-1
 	return y #Remember y is a local variable 
 
 #Function for finding the derivative at x=a, f'(a)
@@ -35,7 +37,7 @@ def deriv(expr,a): #expr is the function and a is the value
 	dy=
 	return dy #Again, dy is local and so if dy is used elsewhere it needs to be defined again
 
-def Newtons(f,x0,n): #here f is the function, x0 is the guess, and n is the number of loops 
+def Newtons(f,x_initial,n): #here f is the function, x0 is the guess, and n is the number of loops 
 	for i in range(n): #Loop the Newton's Method algorithm described in the beginning comments
 		
 	
