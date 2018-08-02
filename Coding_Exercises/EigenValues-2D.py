@@ -28,58 +28,69 @@ def EVal(A): # A is a 2x2 matrix
     #Create an If statement that will return an appropriate error if A is not 2x2
     if len(A)!=2:
         sol="Matrix A is not 2x2 - cannot determine eigenvalues"
-    elif len(A[i])!=2:  #is this correct? Should I change A[i]?
+    elif len(A[0])!=2:
         sol="Matrix A is not 2x2 - cannot determine eigenvalues"
-    
+    elif len(A[1])!=2:
+        sol="Matrix A is not 2x2 - cannot determine eigenvalues"
     
     #Solve the characteristic equation
     else:
         a=1
-        b=A[0][0]+A[1][1]
+        b=-A[0][0]-A[1][1]
         c=(A[0][0]*A[1][1])-(A[0][1]*A[1][0])
-        det=b*2-2*a*c
-        if det>=0:
+        dis=b**2-4*a*c
+        if dis>=0:
             #Find a solution to (A-lambda*I)x=0 for both solutions
             #Normalize your solutions
-            lamda1=(-b+np.sqrt(det))/2
-            lamda2=(-b-np.sqrt(det))/2
-            B1=[[A[0][0]-lamda1,A[0][1]],[A[1][0],A[1][1]-lamda1]]
-            B2=[[A[0][0]-lamda2,A[0][1]],[A[1][0],A[1][1]-lamda2]]
-            v1=np.linalg.solve(B1,[0,0])
-            v2=np.linalg.solve(B2,[0,0])
+            lambda1=(-b+np.sqrt(dis))/2
+            lambda2=(-b-np.sqrt(dis))/2
+            
+            if A[0][0]-lambda1==0 and A[1][0]==0:
+                v1=np.aray([0,1])
+            else:
+                v1=np.array([-A[0][1]/(A[0][0]-lambda1),1])
+
+            if A[0][0]-lambda2==0 and A[1][0]==0:
+                v2=np.array([0,1])
+            else:
+                v2=np.array([-A[0][1]/(A[0][0]-lambda2),1])
+
             v1_mag=m.sqrt(v1[0]**2+v1[1]**2)
             v2_mag=m.sqrt(v2[0]**2+v2[1]**2)
             v1_norm=v1/v1_mag
             v2_norm=v2/v2_mag
+            sol=[lambda1,v1_norm],[lambda2,v2_norm]
         
         else:
             re=-b/2
-            im=(np.sqrt(-det))/2
-            lamda1=re+im
-            lamda2=re-im
-            #This part - how do I deal with the imaginary portion?
-            B1=[[A[0][0]-re,A[0][1]],[A[1][0],A[1][1]-re]]
-            B2=[[A[0][0]-re,A[0][1]],[A[1][0],A[1][1]-re]]
-            v1=np.linalg.solve(B1,[0,0])
-            v2=np.linalg.solve(B2,[0,0])
-            v1_mag=m.sqrt(v1[0]**2+v1[1]**2)
-            v2_mag=m.sqrt(v2[0]**2+v2[1]**2)
-            v1_norm=v1/v1_mag
-            v2_norm=v2/v2_mag
-            
-    sol=[lamda1,v1_norm],[lamda2,v2_norm]
-    
-    return sol #Return the solution in the form [lambda_1,v_1],[lambda_2,v_2]
+            im=(np.sqrt(-dis))/2
+            lambda1=np.complex(re,im)
+            lambda2=np.complex(re,-im)
 
-print(EVal([[1,2],[3,4]]))
+            if A[0][0]-lambda1==0 and A[1][0]==0:
+                v1=np.aray([0,1])
+            else:
+                v1=np.array([-A[0][1]/(A[0][0]-lambda1),1])
+
+            if A[0][0]-lambda2==0 and A[1][0]==0:
+                v2=np.array([0,1])
+            else:
+                v2=np.array([-A[0][1]/(A[0][0]-lambda2),1])
+
+            sol=[lambda1,v1],[lambda2,v2]
+    
+    #Return the solution in the form [lambda_1,v_1],[lambda_2,v_2]
+    return sol
+
+print(EVal([[4,5,13],[3,4,5],[5,6,7]]))
     
 ########################################################
 
 #Print out test of code for each equation
 
-#A=[[1,2],[3,4], Solution: [5.37228,[0.415974, 0.909377]], [-0.372281,[-0.824565, 0.565767]]
+#A=[[1,2],[3,4], Solution: [-5.37228,[0.415974, 0.909377]], [0.372281,[-0.824565, 0.565767]]
     
-#A=[[0,1],[-1,0],Solution: complex solutions [i,[- 0.707107i, 0.707107],[-i,[0.707107i, 0.707107]]
+#A=[[0,1],[-1,0]],Solution: complex solutions [i,[- 0.707107i, 0.707107],[-i,[0.707107i, 0.707107]]
 
 #A=[[4,5,13],[3,4,5],[5,6,7]], Should return an error
 
