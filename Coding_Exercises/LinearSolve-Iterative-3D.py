@@ -26,39 +26,52 @@ import math as m
 import numpy as np
 import matplotlib.pyplot as plt
 
-def LinearSolveIt(A,b): # A is a 3x3 matrix, b is a vector
-	A=np.array()
-	b=np.asrray([])
+def LinearSolveIt(A,b): # A is a 3x3 matrix, b is a vector    A=np.array()
 
-	#Create an If statement that will return an appropriate error if det(A)=0
-	if np.linalg.det(A)==0:
-		return "Error: Determinant equals zero"
-	#Create an If statement that will return an appropriate error if the dimensions of A and b don't align
-	elif len(A)!=len(b):
-		return "Error: Dimensions not compatible"
+    #Create an If statement that will return an appropriate error if det(A)=0
+    if np.linalg.det(A)==0:
+        return "Error: Determinant equals zero"    #this is not working - why?
+    
+    #Create an If statement that will return an appropriate error if the dimensions of A and b don't align
+    elif len(A)!=len(b):
+        return "Error: Dimensions not compatible"
+    
+    else:   
+        #Create a guess that will be used. This way the user doesn't have to input one
+        x_initial=1
+        y_initial=1
+        z_initial=1
 
-	#Create a guess that will be used. This way the user doesn't have to input one
-	guess=np.array([1,2,3])
+        x_new=0
+        y_new=0
+        z_new=0
+        #Define an appropriate error for the solution
+        maxerror=0.01
+        
+        #Create a while loop that runs the iteration while |[x_(k+1),y_(k+1),z_(k+1)]-[x_k,y_k,z_k]|<e
+        while x_new-x_initial>maxerror and y_new-y_initial>maxerror and z_new-z_initial>maxerror:
+            x_new=(b[0]-A[0][1]*y_initial-A[0][2]*z_initial)/A[0][0]
+            y_new=(b[1]-A[1][0]*x_initial-A[1][2]*z_initial)/A[1][1]
+            z_new=(b[2]-A[2][0]*x_initial-A[2][1]*y_initial)/A[2][2]
+            
+            x_initial=x_new
+            y_initial=y_new
+            z_initial=z_new
+            
+            #You should create a break statement in your while loop. This will prevent the loop from running forever
+            break    #is only looping around once - how do I fix this? 
+        sol=[x_new,y_new,z_new]      
+        return sol #Return the solution vector 
 
-	#Define an appropriate error for the solution
-	maxerror=0.01
-	
-	#Create a while loop that runs the iteration while |[x_(k+1),y_(k+1),z_(k+1)]-[x_k,y_k,z_k]|<e
-	while 
-	    #You should create a break statement in your while loop. This will prevent the loop from running forever
-		
-	
-	return sol #Return the solution vector 
-
-
-	
+print(LinearSolveIt([[4,5,13],[3,4,5],[5,6,7]],[1,2,3]))
+    
 ########################################################
 
 #Print out test of code for each equation
 
 #A=[[1,2,3],[4,5,6],[7,8,9]], b=[10,11,12] Solution: This will return an error, det(A)=0
-	
+    
 #A=[[4,5,7],[3,4,5],[5,6,7]], b=[3,4,5,-1,3] Solution: This will return an error, A and b are different sizes
-	
+    
 #A=[[4,5,13],[3,4,5],[5,6,7]], b=[1,2,3] Solution: [-0.214286, 0.928571, -0.214286]
 
