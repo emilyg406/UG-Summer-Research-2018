@@ -27,12 +27,7 @@ import math as m
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp 
-from sympy.abc import x
-
-#Define the function of interest
-def function(x):
-    y=x**2-5  #how do i define this in a way that works well with my later functions?
-    return y #Remember y is a local variable 
+from sympy.abc import x 
 
 #Function for finding the derivative at x=a, f'(a)
 def deriv(expr,n): #expr is the function and a is the value
@@ -40,18 +35,19 @@ def deriv(expr,n): #expr is the function and a is the value
     numderiv=sp.lambdify(x,symb_deriv) #Again, dy is local and so if dy is used elsewhere it needs to be defined again
     return numderiv
     
-print(deriv(x**2-5,1)(1))
+print(deriv(x**2-5,0)(3))
 
-def Newtons(f,x_initial,n): #here f is the function, x0 is the guess, and n is the number of loops 
+def Newtons(f,x_initial,n): #where f is the function, x0 is the guess, and n is the number of loops 
+    x_new=x_initial
     for i in range(n): #Loop the Newton's Method algorithm described in the beginning comments
-        y_initial=function(x_initial)
-        dy=deriv(function(x_initial),i)
-        x_new=x_initial-y_initial/dy
+        y_initial=deriv(f,0)(x_new)
+        dy=deriv(f,1)(x_new)
+        x_new=x_new-y_initial/dy
         sol=x_new
     
-    return y_initial #Sol is the approximation to the solution to f(x)=0
+    return sol #Sol is the approximation to the solution to f(x)=0
     
-print(Newtons(function(x),1,100))
+print(Newtons(x**2+x-1,-2,5))
 ########################################################
 
 #Print out test of code for each equation
