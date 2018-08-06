@@ -29,41 +29,46 @@ import matplotlib.pyplot as plt
 def LinearSolveIt(A,b): # A is a 3x3 matrix, b is a vector    A=np.array()
 
     #Create an If statement that will return an appropriate error if det(A)=0
-    if np.linalg.det(A)==0:
-        return "Error: Determinant equals zero"    #this is not working - why?
+    if abs(np.linalg.det(A))<10**-8:
+        sol="Error: Determinant equals zero"
     
     #Create an If statement that will return an appropriate error if the dimensions of A and b don't align
     elif len(A)!=len(b):
-        return "Error: Dimensions not compatible"
+        sol="Error: Dimensions not compatible"
     
     else:   
         #Create a guess that will be used. This way the user doesn't have to input one
-        x_initial=1
-        y_initial=1
-        z_initial=1
+        x_initial=0
+        y_initial=0
+        z_initial=0
 
-        x_new=0
-        y_new=0
-        z_new=0
+        x_new=-1
+        y_new=1
+        z_new=-1
         #Define an appropriate error for the solution
-        maxerror=0.01
-        
+        maxerror=0.0001
+        count=0
         #Create a while loop that runs the iteration while |[x_(k+1),y_(k+1),z_(k+1)]-[x_k,y_k,z_k]|<e
-        while x_new-x_initial>maxerror and y_new-y_initial>maxerror and z_new-z_initial>maxerror:
-            x_new=(b[0]-A[0][1]*y_initial-A[0][2]*z_initial)/A[0][0]
-            y_new=(b[1]-A[1][0]*x_initial-A[1][2]*z_initial)/A[1][1]
-            z_new=(b[2]-A[2][0]*x_initial-A[2][1]*y_initial)/A[2][2]
+        while abs(x_new-x_initial)>maxerror and abs(y_new-y_initial)>maxerror and abs(z_new-z_initial)>maxerror:
             
             x_initial=x_new
             y_initial=y_new
             z_initial=z_new
             
+            x_new=(b[0]-A[0][1]*y_initial-A[0][2]*z_initial)/A[0][0]
+            y_new=(b[1]-A[1][0]*x_new-A[1][2]*z_initial)/A[1][1]
+            z_new=(b[2]-A[2][0]*x_new-A[2][1]*y_new)/A[2][2]
+            count=count+1
+            
+            sol=[x_new,y_new,z_new]
             #You should create a break statement in your while loop. This will prevent the loop from running forever
-            break    #is only looping around once - how do I fix this? 
-        sol=[x_new,y_new,z_new]      
-        return sol #Return the solution vector 
+            if count>=1/maxerror**2:
+                sol=[x_new,y_new,z_new] 
+                break    #is only looping around once - how do I fix this? 
+            
+    return sol #Return the solution vector 
 
-print(LinearSolveIt([[4,5,13],[3,4,5],[5,6,7]],[1,2,3]))
+print(LinearSolveIt([[8,5,1],[3,24,5],[5,6,15]],[1,2,3]))
     
 ########################################################
 
