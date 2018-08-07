@@ -28,34 +28,36 @@ Created on Tue Jul 10 07:59:29 2018
 #################################################################
 
 
-
+#Import relevant libraries
 import sympy as syp 
 import numpy as np
 import math as math 
 
-def NewSolve(f,var,point,steps):
-	J=[]
-	for i in range(0,len(f)):
-		J.append([])
-	for m in range(0,len(f)):
-		for n in range(0,len(var)):
-			J[m].append(syp.diff(f[m],var[n]))
-	Jpoint=np.zeros([len(f),len(var)])
-	varpoint=[]
-	numpoint=point
-	fnumpoint=point
-	for _ in range(0,steps):
-		for k in range(0,len(point)):
-			varpoint.append((var[k],numpoint[k]))
-		if (len(varpoint)>len(point)):
-			varpoint=varpoint[len(point):2*len(point)]
-		for k in range(0, len(point)):
-			fnumpoint[k]=syp.sympify(f[k]).subs(varpoint)
-		for m in range(0,len(f)):
-			for n in range(0,len(var)):
-				Jpoint[m][n]=J[m][n].subs(varpoint)
-		numpoint=numpoint-np.dot(np.linalg.inv(Jpoint),fnumpoint)
-	return numpoint
+#define function
+def NewSolve(f,var,point,steps): #f is function, var are variables, point is initial guess, steps are number of times program works
+    J=[]
+    for i in range(0,len(f)):
+        J.append([])  #create matrix J with same length as the number of variables
+    for m in range(0,len(f)):
+        for n in range(0,len(var)):
+            J[m].append(syp.diff(f[m],var[n]))  #add derivative of each function part to matrix J, with respect to each variable
+    Jpoint=np.zeros([len(f),len(var)])  #create a square matrix, length = number of variables
+    varpoint=[]
+    numpoint=point
+    fnumpoint=point
+    for _ in range(0,steps):
+        for k in range(0,len(point)):
+            varpoint.append((var[k],numpoint[k]))
+        if (len(varpoint)>len(point)):
+            varpoint=varpoint[len(point):2*len(point)]
+        for k in range(0, len(point)):
+            fnumpoint[k]=syp.sympify(f[k]).subs(varpoint)
+        print(fnumpoint)
+        for m in range(0,len(f)):
+            for n in range(0,len(var)):
+                Jpoint[m][n]=J[m][n].subs(varpoint)
+        numpoint=numpoint-np.dot(np.linalg.inv(Jpoint),fnumpoint)
+    return numpoint
 
 #A test of the algorithm with the system of equations from the initial comment block
 print(NewSolve(['x^2+y','x*y-y^2-y'],['x','y'],[1.5,1.5],10))
